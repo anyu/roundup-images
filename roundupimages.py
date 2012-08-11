@@ -11,7 +11,9 @@ number = [0]
 
 def get_image(link):
 
-    os.mkdir (desktop_folder)
+    if not os.path.exists(desktop_folder):
+        os.mkdir (desktop_folder)
+
 
     weblink = urllib.urlopen(link)
     soup = BeautifulSoup(weblink)
@@ -29,7 +31,7 @@ def get_image(link):
 def main():
     
     if len(sys.argv) != 2:
-        sys.stderr.write("Usage: ./RoundupImages.py <campaignURL>\n")
+        sys.stderr.write("Usage: ./roundupimages.py <campaignURL>\n")
         sys.exit(-1)
     
     campaignURL = sys.argv[1]
